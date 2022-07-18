@@ -31,18 +31,18 @@ const server = http.createServer((req,res) => {
             console.log(chunk);
             Body.push(chunk);
         });
-        req.on('end', () => {
+        return req.on('end', () => {
             const ParsedBody = Buffer.concat(Body).toString();
             const Message = ParsedBody.split('=')[1];
             console.log(ParsedBody);
             console.log(Message);
             fs.writeFileSync('message.txt', Message);
+            // 302 is redirect HTTP status code
+            res.statusCode = 302;
+            // Header with Location redirects to the set path
+            res.setHeader('Location', '/');
+            return res.end();
         });
-        // 302 is redirect HTTP status code
-        res.statusCode = 302;
-        // Header with Location redirects to the set path
-        res.setHeader('Location', '/');
-        return res.end();
     }
 
     res.setHeader('Content-Type', 'text/html');
