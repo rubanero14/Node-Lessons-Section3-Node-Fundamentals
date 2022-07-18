@@ -26,7 +26,18 @@ const server = http.createServer((req,res) => {
     }
 
     if(URL === '/message' && Method === 'POST'){
-        fs.writeFileSync('message.txt', 'test');
+        const Body = [];
+        req.on('data', (chunk) => {
+            console.log(chunk);
+            Body.push(chunk);
+        });
+        req.on('end', () => {
+            const ParsedBody = Buffer.concat(Body).toString();
+            const Message = ParsedBody.split('=')[1];
+            console.log(ParsedBody);
+            console.log(Message);
+            fs.writeFileSync('message.txt', Message);
+        });
         // 302 is redirect HTTP status code
         res.statusCode = 302;
         // Header with Location redirects to the set path
