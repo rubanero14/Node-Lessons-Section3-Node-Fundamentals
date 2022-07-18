@@ -36,12 +36,13 @@ const server = http.createServer((req,res) => {
             const Message = ParsedBody.split('=')[1];
             console.log(ParsedBody);
             console.log(Message);
-            fs.writeFileSync('message.txt', Message);
-            // 302 is redirect HTTP status code
-            res.statusCode = 302;
-            // Header with Location redirects to the set path
-            res.setHeader('Location', '/');
-            return res.end();
+            fs.writeFile('message.txt', Message, err => {
+                // 302 is redirect HTTP status code
+                res.statusCode = 302;
+                // Header with Location redirects to the set path
+                res.setHeader('Location', '/');
+                return res.end();
+            });
         });
     }
 
@@ -59,4 +60,4 @@ const server = http.createServer((req,res) => {
     return res.end();
 });
 
-server.listen(3000);
+server.listen(8000);
