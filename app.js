@@ -1,10 +1,39 @@
 const http = require('http');
-
+const fs = require('fs');
 
 
 const server = http.createServer((req,res) => {
-    console.log(req.url, req.method, req.headers);
+    // console.log(req.url, req.method, req.headers);
     // process.exit();
+    const URL = req.url;
+    const Method = req.method;
+
+    if(URL === '/'){
+        res.write(`
+            <html>
+                <head>
+                    <title>Enter Message</title>
+                    <body>
+                        <form action="/message" method="POST">
+                            <input type="text" name="message"/>
+                            <button type="submit">Send</button>
+                        </form>
+                    </body>
+                </head>
+            </html>
+        `);
+        return res.end();
+    }
+
+    if(URL === '/message' && Method === 'POST'){
+        fs.writeFileSync('message.txt', 'test');
+        // 302 is redirect HTTP status code
+        res.statusCode = 302;
+        // Header with Location redirects to the set path
+        res.setHeader('Location', '/');
+        return res.end();
+    }
+
     res.setHeader('Content-Type', 'text/html');
     res.write(`
         <html>
@@ -16,7 +45,7 @@ const server = http.createServer((req,res) => {
             </head>
         </html>
     `);
-    res.end('Hi');
+    return res.end();
 });
 
 server.listen(3000);
