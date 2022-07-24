@@ -10,4 +10,5 @@ const routes = require('./routes'); // .js is automatically appended by Node int
 console.log(routes.someText);
 const server = http.createServer(routes.handler);
 
+// Listen to server
 server.listen(8000);
