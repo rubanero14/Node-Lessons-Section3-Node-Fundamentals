@@ -25,11 +25,16 @@ const requestHandler = (req, res) => {
     }
     
     if(URL === '/message' && Method === 'POST'){
+        // Data from input is parsed and assigned to Body
         const Body = [];
+
+        // Event Listener on data began incoming and parsing
         req.on('data', (chunk) => {
             console.log(chunk);
             Body.push(chunk);
         });
+
+        // Event Listener on data finished parsing
         return req.on('end', () => {
             const ParsedBody = Buffer.concat(Body).toString();
             const Message = ParsedBody.split('=')[1];
