@@ -1,4 +1,5 @@
 const http = require('http');
+const PORT = 8000;
 
 // importing the custom module created in routes.js
 const routes = require('./routes'); // .js is automatically appended by Node into filepath
@@ -11,4 +12,5 @@ console.log(routes.someText);
 const server = http.createServer(routes.handler);
 
 // Listen to server
-server.listen(8000);
+server.listen(PORT);
+console.log(`Server online at http://localhost:${PORT}/`)
