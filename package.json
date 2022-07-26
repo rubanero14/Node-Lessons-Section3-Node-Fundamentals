@@ -1,0 +1,21 @@
+{
+  "name": "node-lessons-section3-node-fundamentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubanero14/Node-Lessons-Section3-Node-Fundamentals.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubanero14/Node-Lessons-Section3-Node-Fundamentals/issues"
+  },
+  "homepage": "https://github.com/rubanero14/Node-Lessons-Section3-Node-Fundamentals#readme"
+}
