@@ -1,5 +1,5 @@
 const http = require('http');
-const PORT = 8000;
+const PORT = 3000;
 
 // importing the custom module created in routes.js
 const routes = require('./routes'); // .js is automatically appended by Node into filepath
