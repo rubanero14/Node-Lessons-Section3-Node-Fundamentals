@@ -33,7 +33,7 @@ const requestHandler = (req, res) => {
             console.log(chunk);
             Body.push(chunk);
         });
-
+        
         // Event Listener on data finished parsing
         return req.on('end', () => {
             const ParsedBody = Buffer.concat(Body).toString();
