@@ -6,12 +6,22 @@ const PORT = 3000;
 const app = express();
 
 // Basic middleware example
-app.use((req, res, next) => {
-    console.log('In the middleware!');
-    next(); // This allow the request to continue to the next middleware in line
+// app.use((req, res, next) => {
+//     console.log('In the middleware!');
+//     next(); // This allow the request to continue to the next middleware in line
+// });
+app.use('/', (req, res, next) => {
+    console.log('This always runs!')
+    next();
 });
 
-app.use((req, res, next) => {
+app.use('/add-product', (req, res, next) => {
+    console.log('add product middleware!');
+    // res.setHeader('Content-Type', 'text/html');
+    res.send(`<h1>Add Product Page!</h1>`);
+});
+
+app.use('/', (req, res, next) => {
     console.log('In another middleware!');
     // res.setHeader('Content-Type', 'text/html');
     res.send(`<h1>Hello from Express JS</h1>`);
