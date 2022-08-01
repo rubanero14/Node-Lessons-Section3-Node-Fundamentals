@@ -1,4 +1,4 @@
-const http = require('http');
+// const http = require('http');
 
 const express = require('express');
 const PORT = 3000;
@@ -24,8 +24,12 @@ app.use((req, res, next) => {
 // is exported
 // for more than one item exported, we can access the function using key/value pairing as below
 // console.log(routes.someText);
-const server = http.createServer(app);
 
 // Listen to server
-server.listen(PORT);
-console.log(`Server online at http://localhost:${PORT}/`)
+// const server = http.createServer(app);
+// server.listen(PORT);
+
+
+// Listen to server short-hand
+app.listen(PORT);
+console.log(`Server online at http://localhost:${PORT}`)
