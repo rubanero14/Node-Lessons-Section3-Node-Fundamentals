@@ -1,28 +1,40 @@
 // const http = require('http');
-
 const express = require('express');
+const bodyParser = require('body-parser');
 const PORT = 3000;
 
 const app = express();
 
+app.use(bodyParser.urlencoded({extended: true}));
 // Basic middleware example
 // app.use((req, res, next) => {
 //     console.log('In the middleware!');
 //     next(); // This allow the request to continue to the next middleware in line
 // });
-app.use('/', (req, res, next) => {
-    console.log('This always runs!')
-    next();
-});
+// app.use('/', (req, res, next) => {
+//     // console.log('This always runs!')
+//     next();
+// });
 
 app.use('/add-product', (req, res, next) => {
-    console.log('add product middleware!');
+    // console.log('add product middleware!');
     // res.setHeader('Content-Type', 'text/html');
-    res.send(`<h1>Add Product Page!</h1>`);
+    res.send(`
+        <form action="/product" method="POST">
+            <input name="title" type="text"/>
+            <input type="submit" value="Add Product"/>
+        </form>
+    `);
 });
 
+app.post('/product', (req, res, next) => {
+    console.log(req.body);
+    res.redirect('/');
+});
+
+
 app.use('/', (req, res, next) => {
-    console.log('In another middleware!');
+    // console.log('In another middleware!');
     // res.setHeader('Content-Type', 'text/html');
     res.send(`<h1>Hello from Express JS</h1>`);
 });

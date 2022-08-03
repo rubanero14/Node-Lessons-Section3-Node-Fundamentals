@@ -7,7 +7,7 @@ const requestHandler = (req, res) => {
     const URL = req.url;
     const Method = req.method;
 
-    if(URL === '/'){
+    if (URL === '/') {
         res.write(`
             <html>
                 <head>
@@ -23,8 +23,8 @@ const requestHandler = (req, res) => {
         `);
         return res.end();
     }
-    
-    if(URL === '/message' && Method === 'POST'){
+
+    if (URL === '/message' && Method === 'POST') {
         // Data from input is parsed and assigned to Body
         const Body = [];
 
@@ -33,7 +33,7 @@ const requestHandler = (req, res) => {
             console.log(chunk);
             Body.push(chunk);
         });
-        
+
         // Event Listener on data finished parsing
         return req.on('end', () => {
             const ParsedBody = Buffer.concat(Body).toString();
@@ -49,7 +49,7 @@ const requestHandler = (req, res) => {
             });
         });
     }
-    
+
     res.setHeader('Content-Type', 'text/html');
     res.write(`
         <html>
