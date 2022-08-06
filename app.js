@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 // using outsourced routes from admin.js/shop.js into app.js
-app.use(adminRoutes);
+app.use('/admin', adminRoutes);
 app.use(shopRouter);
 
 // middleware for catching all routes not registered/used and display error 404 message to browser
