@@ -32,7 +32,7 @@ router.get('/add-product', (req, res, next) => {
         the filename can be accessed by using 3 ways, 
         1. Directly accessing the file like this => res.sendFile(path.join(__dirname, '..', 'views', 'add-product.html'));
         2. Can be accessed by by manually constructing filename like this => const AddProductHTML = `${rootDir}/views/add-product.html`;
-        3. Like below;
+        3. Or using path.join method like below;
     */ 
     // create filepath using file name
     const AddProductHTML = path.join(rootDir,'views','add-product.html');

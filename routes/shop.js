@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
         the filename can be accessed by using 3 ways, 
         1. Directly accessing the file like this => // res.sendFile(path.join(__dirname, '..', 'views', 'shop.html'));
         2. Can be accessed by by manually constructing filename like this => const HomePageHTML = `${rootDir}/views/shop.html`;
-        3. Like below;
+        3. Or using path.join method like below;
     */
     // create filepath using file name
     const HomePageHTML = path.join(rootDir, 'views', 'shop.html');
