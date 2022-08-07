@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = 3000;
@@ -16,9 +18,13 @@ app.use(shopRouter);
 
 // middleware for catching all routes not registered/used and display error 404 message to browser
 app.use((req,res,next) => {
-    res.status(404).send(`<h1>Error 404 : Page not found!</h1>`);
+    // shorthand for http status code sending to client side
+    // res.sendStatus(404);
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 // Listen to server short-hand
 app.listen(PORT);
-console.log(`Server online at http://localhost:${PORT}`)
+console.log(`Server online at http://localhost:${PORT}`);
+
+// module.exports = path.dirname(require.main.filename);
