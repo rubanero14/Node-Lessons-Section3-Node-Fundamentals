@@ -1,6 +1,8 @@
 // this core module path is needed to sending html template to frontend modularly 
 const path = require('path');
 
+const rootDir = require('../util/path');
+
 const express = require('express');
 
 const router = express.Router();
@@ -16,9 +18,20 @@ router.get('/', (req, res, next) => {
         folder, filename), where the the path will be result of concatenation of these params.
         File Directory or __dirname param will point to the parent folder directory of the file its being used from,
         means that if the filename is in different folder than its being called from, needed 4 params and the second param will be
-        up one level syntax, where it gives an absolute path 
+        up one level syntax('../' or './' or, '..' or '.' without forward slash '/' still acceptable), 
+        where it gives an absolute path 
+
+        Using utility function, we can further refactor the code above by combining __dirname & '..' using path.dirname, 
+        the filename can be accessed by using 3 ways, 
+        1. Directly accessing the file like this => // res.sendFile(path.join(__dirname, '..', 'views', 'shop.html'));
+        2. Can be accessed by by manually constructing filename like this => const HomePageHTML = `${rootDir}/views/shop.html`;
+        3. Like below;
     */
-    res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
+    // create filepath using file name
+    const HomePageHTML = path.join(rootDir, 'views', 'shop.html');
+    
+    // Inject HTML file to client
+    res.sendFile(HomePageHTML);
 });
 
 module.exports = router;

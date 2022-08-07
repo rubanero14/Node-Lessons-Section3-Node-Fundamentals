@@ -26,5 +26,3 @@ app.use((req,res,next) => {
 // Listen to server short-hand
 app.listen(PORT);
 console.log(`Server online at http://localhost:${PORT}`);
-
-// module.exports = path.dirname(require.main.filename);
