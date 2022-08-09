@@ -12,6 +12,12 @@ const app = express();
 // Initiate and use middlewares here
 app.use(bodyParser.urlencoded({extended: true}));
 
+/* 
+    This middleware enables serving static files eg: main.css files to browser.
+    Basically, granting read access to the browser on the folder we passed in as the arguement below
+*/
+app.use(express.static(path.join(__dirname, 'public')))
+
 // using outsourced routes from admin.js/shop.js into app.js
 app.use('/admin', adminRoutes);
 app.use(shopRouter);
