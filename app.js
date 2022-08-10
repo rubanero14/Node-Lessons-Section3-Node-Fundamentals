@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')))
 
 // using outsourced routes from admin.js/shop.js into app.js
-app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes.routes);
 app.use(shopRouter);
 
 // middleware for catching all routes not registered/used and display error 404 message to browser

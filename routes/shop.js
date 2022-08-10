@@ -5,6 +5,8 @@ const rootDir = require('../util/path');
 
 const express = require('express');
 
+const adminData = require('./admin');
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -30,6 +32,7 @@ router.get('/', (req, res, next) => {
     // create filepath using file name
     const HomePageHTML = path.join(rootDir, 'views', 'shop.html');
     
+    console.log('shop.js',adminData.products);
     // Inject HTML file to client
     res.sendFile(HomePageHTML);
 });

@@ -7,6 +7,9 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
+// Initiate global variable to store and pass data across middleware/routes
+const products = [];
+
 // /admin/add-product => GET
 router.get('/add-product', (req, res, next) => {
     // console.log('add product middleware!');
@@ -44,7 +47,17 @@ router.get('/add-product', (req, res, next) => {
 // /admin/add-product => POST
 router.post('/add-product', (req, res, next) => {
     console.log(req.body);
+    products.push({
+        title: req.body.title,
+    })
     res.redirect('/');
 });
 
-module.exports = router;
+// Exporting this module to other files
+// module.exports = router;
+// exports.routes = router;
+// exports.products = products;
+module.exports = {
+    routes: router,
+    products: products,
+}
