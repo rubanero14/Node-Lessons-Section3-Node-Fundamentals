@@ -1,20 +1,20 @@
-// this core module path is needed to sending html template to frontend modularly 
-const path = require('path');
+// this core module path is needed to sending html template to frontend modularly
+const path = require("path");
 
-const rootDir = require('../util/path');
+const rootDir = require("../util/path");
 
-const express = require('express');
+const express = require("express");
 
-const adminData = require('./admin');
+const adminData = require("./admin");
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    // console.log('In another middleware!');
-    // res.setHeader('Content-Type', 'text/html');
-    // res.send(`<h1>Hello from Express JS</h1>`);
+router.get("/", (req, res, next) => {
+  // console.log('In another middleware!');
+  // res.setHeader('Content-Type', 'text/html');
+  // res.send(`<h1>Hello from Express JS</h1>`);
 
-    /* 
+  /* 
         path.join will be passed 3 params, 
         i.e.: (file directory, up and level(if file in different sibling folder),
         folder, filename), where the the path will be result of concatenation of these params.
@@ -29,12 +29,12 @@ router.get('/', (req, res, next) => {
         2. Can be accessed by by manually constructing filename like this => const HomePageHTML = `${rootDir}/views/shop.html`;
         3. Or using path.join method like below;
     */
-    // create filepath using file name
-    const HomePageHTML = path.join(rootDir, 'views', 'shop.html');
-    
-    console.log('shop.js',adminData.products);
-    // Inject HTML file to client
-    res.sendFile(HomePageHTML);
+  // create filepath using file name
+  const HomePageHTML = path.join(rootDir, "views", "shop.html");
+
+  console.log("shop.js", adminData.products);
+  // Inject HTML file to client
+  res.sendFile(HomePageHTML);
 });
 
 module.exports = router;
