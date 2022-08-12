@@ -9,6 +9,20 @@ const shopRouter = require('./routes/shop');
 
 const app = express();
 
+/*
+    Telling Express JS to use pug as templating engine
+    More of the app.set() use can be found in the documentation below:
+    http://expressjs.com/en/5x/api.html#app.set
+*/
+app.set('view engine', 'pug');
+
+/* 
+    Telling Express to find and use HTML templates inside the views folder, in the case of the templates stored in different
+    folder name, change the second arguement passed in the app.set() as the name of the folder:
+    e.g.: app.set('views','templates') if the templates stored inside 'templates' folder 
+*/
+app.set('views','views');
+
 // Initiate and use middlewares here
 app.use(bodyParser.urlencoded({extended: true}));
 

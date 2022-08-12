@@ -34,7 +34,14 @@ router.get("/", (req, res, next) => {
 
   console.log("shop.js", adminData.products);
   // Inject HTML file to client
-  res.sendFile(HomePageHTML);
+  // res.sendFile(HomePageHTML);
+  
+  /*
+        This .render() now renders/injects Pug files to browser, similar to .sendFile does for HTML and just have to pass
+        filename as arguement without .pug extension as Express will append .pug to it as we are using Pug as main
+        templating engine in app.js file
+  */
+  res.render('shop');
 });
 
 module.exports = router;
