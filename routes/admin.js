@@ -38,10 +38,13 @@ router.get('/add-product', (req, res, next) => {
         3. Or using path.join method like below;
     */ 
     // create filepath using file name
-    const AddProductHTML = path.join(rootDir,'views','add-product.html');
+    // const AddProductHTML = path.join(rootDir,'views','add-product.html');
     
-    // Inject HTML file to client
-    res.sendFile(AddProductHTML);
+    // // Inject HTML file to client
+    // res.sendFile(AddProductHTML);
+    res.render('add-product', {
+        docTitle: 'Add Product',
+    })
 });
 
 // /admin/add-product => POST

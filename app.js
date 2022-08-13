@@ -40,7 +40,10 @@ app.use(shopRouter);
 app.use((req,res,next) => {
     // shorthand for http status code sending to client side
     // res.sendStatus(404);
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    // res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.status(404).render('404', {
+        docTitle: '404: Page Not Found',
+    });
 });
 
 // Listen to server short-hand

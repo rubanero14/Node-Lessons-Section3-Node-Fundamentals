@@ -6,6 +6,7 @@ const rootDir = require("../util/path");
 const express = require("express");
 
 const adminData = require("./admin");
+const { title } = require("process");
 
 const router = express.Router();
 
@@ -30,9 +31,9 @@ router.get("/", (req, res, next) => {
         3. Or using path.join method like below;
     */
   // create filepath using file name
-  const HomePageHTML = path.join(rootDir, "views", "shop.html");
+  // const HomePageHTML = path.join(rootDir, "views", "shop.html");
 
-  console.log("shop.js", adminData.products);
+  // console.log("shop.js", adminData.products);
   // Inject HTML file to client
   // res.sendFile(HomePageHTML);
   
@@ -41,7 +42,14 @@ router.get("/", (req, res, next) => {
         filename as arguement without .pug extension as Express will append .pug to it as we are using Pug as main
         templating engine in app.js file
   */
-  res.render('shop');
+  const products = adminData.products;
+
+  // Injecting pug file to browser for rendering and passing dynamic data into object as 2nd arguement to be rendered there
+  res.render('shop', {
+    // passing data as key:value pair with key name can be assigned any name and easier to identify
+    products: products,
+    docTitle: 'Shop',
+  });
 });
 
 module.exports = router;
