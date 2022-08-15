@@ -15,9 +15,12 @@ html(lang="en")
             nav.main-header__nav
                 ul.main-header__item-list
                     li.main-header__item
-                        a(href="/") Shop
+                        a(href="/", class=(docTitle==='Shop' ? 'active' : '')) Shop
                     li.main-header__item
-                        a(href="/admin/add-product") Add-Product
+                        a(href="/admin/add-product", class=(docTitle==='Add Product' ? 'active' : '')) Add-Product
+                        // Line 18 & 20 => adding dynamic 'active' class binding based on which page is active
+                        // alternatively, also can use conditions using path key which is part of the dynamic data sent in
+                        // from shop.js and admins.js for rendering for class binding replacing docTitle
         main
             // use block here to render dynamic layouts based on hook name assigned (in this case is content)
             block content

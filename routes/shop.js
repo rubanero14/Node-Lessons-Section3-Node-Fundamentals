@@ -49,6 +49,7 @@ router.get("/", (req, res, next) => {
     // passing data as key:value pair with key name can be assigned any name and easier to identify
     products: products,
     docTitle: 'Shop',
+    path: '/',
   });
 });
 
