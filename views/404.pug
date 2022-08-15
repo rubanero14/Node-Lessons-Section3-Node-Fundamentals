@@ -1,20 +1,10 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/shop.css")
-        title #{ docTitle }
-    body 
-        header.main-header
-            nav.main-header__nav
-                ul.main-header__item-list
-                    li.main-header__item
-                        a(href="/") Shop
-                    li.main-header__item
-                        a(href="/admin/add-product") Add-Product
-        main
-            h1 #{docTitle}
-            a(href="/")
-                button &#8592; Back to Homepage
+extends layouts/main-layout.pug
+
+block content
+    h1 #{docTitle}
+    a(href="/")
+        button &#8592; Back to Homepage
+        // Documentation for 404.pug
+        // Line 1 => use extends to import the layout to render with this file and this declaration MUST be on the FIRST line always
+        // Line 3 => use Block here to inject the indented contents to the main-layout file dynamically
+        // Line 7 => Comments should be only included with indentation after block hook is injected
