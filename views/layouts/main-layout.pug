@@ -6,8 +6,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/shop.css")
         // use block here to render dynamic layouts based on hook name assigned (in this case is styles)
-        block styles 
-        title #{ docTitle }
+        block styles
+        // JS template syntax is ${ any JS codes } but in Pug, the template syntax is #{ any JS codes }
+        // docTitle and products, both object passed from shop.js directly to this Pug template
+        title #{ docTitle }    
     body 
         header.main-header
             nav.main-header__nav

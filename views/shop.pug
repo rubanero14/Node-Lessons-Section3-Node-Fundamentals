@@ -1,40 +1,26 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/shop.css")
-        // JS template syntax is ${ any JS codes } but in Pug, the template syntax is #{ any JS codes }
-        title #{ docTitle }
+extends layouts/main-layout.pug
 
-        // docTitle and products, both object passed from shop.js directly to this Pug template
-    body 
-        header.main-header
-            nav.main-header__nav
-                ul.main-header__item-list
-                    li.main-header__item
-                        a.active(href="/") Shop
-                    li.main-header__item 
-                        a(href="/admin/add-product") Add Product 
-        main 
-            // If statement for conditional rendering in Pug
-            if products.length > 0
-                // Nest the code block below to be rendered based on the if statement above
-                div.grid
-                    // Create for loop to iterate each item in products array/object
-                    // Pug for loop syntax => each 'any name' in array/object name of iteration
-                    // Indent the code block below inwards after looping directive so that Pug knows that belongs to the loop
-                    each product in products
-                        article.card.product-item
-                            header.card__header
-                                h1.product__title #{ product.title }
-                            div.card__image
-                                img(src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png", alt="A Book")
-                            div.card__content
-                                h2.product__price $19.99
-                                p.product__description A very interesting book about so many even more interesting things!
-                            div.card__actions
-                                button.btn Add to Cart
-            else
-                h1 No products found!
+block content
+    if products.length > 0
+        div.grid
+            each product in products
+                article.card.product-item
+                    header.card__header
+                        h1.product__title #{ product.title }
+                    div.card__image
+                        img(src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png", alt="A Book")
+                    div.card__content
+                        h2.product__price $19.99
+                        p.product__description A very interesting book about so many even more interesting things!
+                    div.card__actions
+                        button.btn Add to Cart
+    else
+        h1 No products found!
+        // Documentation for shop.pug
+        // Line 4 => If statement for conditional rendering in Pug
+        // Line 5 => Nest the code block below to be rendered based on the if statement above
+        // Line 6 => Create for loop to iterate each item in products array/object
+        // Line 6 => Pug for loop syntax => each 'any name' in array/object name of iteration
+        // Line 6 => Indent the code block below inwards after looping directive so that Pug knows that belongs to the loop
+            
+                    
