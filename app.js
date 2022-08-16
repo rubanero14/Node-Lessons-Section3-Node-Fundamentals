@@ -4,24 +4,38 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = 3000;
 
+const app = express();
+
 const adminRoutes = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 
-const app = express();
+// Handlebars Template Engine Section
+// For Handlebar templating engine, we have to manually install and import into project as its not built-in unlike the Pug engine
+const expressHandlebars = require('express-handlebars');
+/* 
+    Telling express to use handlebar engine and pass any identifier name of choice into .engine() arguement & 
+    registered package name as 2nd arguement as function to initialize the engine as below. The indentifier name given will
+    be used as file extension such as shop.hbs or shop.{identifier-name} you had given here, its dynamic!
+*/
+app.engine('hbs', expressHandlebars());
+//  Telling Express JS to use handlebars as templating engine
+app.set('view engine', 'hbs');
+app.set('views','views');
 
+// Pug Template Engine Section
 /*
     Telling Express JS to use pug as templating engine
     More of the app.set() use can be found in the documentation below:
     http://expressjs.com/en/5x/api.html#app.set
 */
-app.set('view engine', 'pug');
+// app.set('view engine', 'pug');
 
 /* 
     Telling Express to find and use HTML templates inside the views folder, in the case of the templates stored in different
     folder name, change the second arguement passed in the app.set() as the name of the folder:
     e.g.: app.set('views','templates') if the templates stored inside 'templates' folder 
 */
-app.set('views','views');
+// app.set('views','views');
 
 // Initiate and use middlewares here
 app.use(bodyParser.urlencoded({extended: true}));
