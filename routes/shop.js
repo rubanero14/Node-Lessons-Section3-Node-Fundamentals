@@ -50,6 +50,9 @@ router.get("/", (req, res, next) => {
     products: products,
     docTitle: 'Shop',
     path: '/',
+    // This boolean property is needed for conditional rendering in handlebars template, since the template dont handle JS codes
+    // but accepts boolean values 
+    hasProducts: products.length > 0,
   });
 });
 

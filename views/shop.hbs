@@ -21,24 +21,36 @@
         </nav>
     </header>
     <main>
-        <h1>My Product</h1>
-        <div class="grid">
-            <article class="card product-item">
-                <header class="card__header">
-                    <h1 class="product__title">Great Book</h1>
-                </header>
-                <div class="card__image">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
-                </div>
-                <div class="card__content">
-                    <h2 class="product__price">$19.99</h2>
-                    <p class="product__description">A very interesting book about so many even more interesting things!</p>
-                </div>
-                <div class="card__actions">
-                    <button class="btn">Add to Cart</button>
-                </div>
-            </article>
-        </div>
+        <!-- Block statement like for loop / if statements needs # and followed by if syntax inside interpolation and 
+        beginning of the code block-->
+        {{#if hasProducts}}
+            <div class="grid">
+                <!-- for loop statement uses #each and followed by array/object name we passed in here -->
+                {{#each products}}
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <!-- properties of array/object can be accessed using 'this' keyword followed by the key name -->
+                            <h1 class="product__title">{{ this.title }}</h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$19.99</h2>
+                            <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                        </div>
+                        <div class="card__actions">
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </article>
+                {{/each}}
+                <!-- for loop statement closing syntax -->
+            </div>
+        <!-- else statement is part of the main if statement but within the code block, and dont need # to initiate -->
+        {{else}}
+            <h1>No products found!</h1>
+        {{/if}}
+        <!-- if statement closing syntax -->
     </main>
 </body>
 </html>
