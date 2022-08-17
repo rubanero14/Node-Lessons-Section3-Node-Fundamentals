@@ -9,24 +9,29 @@ const app = express();
 const adminRoutes = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 
+// EJS Template Engine Section
+/*
+    Telling Express JS to use EJS as templating engine
+*/
+app.set('view engine','ejs');
+
 // Handlebars Template Engine Section
 // For Handlebar templating engine, we have to manually install and import into project as its not built-in unlike the Pug engine
-const expressHandlebars = require('express-handlebars');
+// const expressHandlebars = require('express-handlebars');
 /* 
     Telling express to use handlebar engine and pass any identifier name of choice into .engine() arguement & 
     registered package name as 2nd arguement as function to initialize the engine as below. The indentifier name given will
     be used as file extension such as shop.hbs or shop.{identifier-name} you had given here, its dynamic!
 */
 /* This app.engine('hbs', ...) is applicable for all handlebars files extension except the main layout file */
-app.engine('hbs', expressHandlebars({
-    layoutsDir: 'views/layouts/',
-    defaultLayout: 'main-layout',
-    /* This code below is applicable for main layout handlebars file extension excluding all handlebars files */
-    extname: 'hbs',
-}));
+// app.engine('hbs', expressHandlebars({
+//     layoutsDir: 'views/layouts/',
+//     defaultLayout: 'main-layout',
+//     /* This code below is applicable for main layout handlebars file extension excluding all handlebars files */
+//     extname: 'hbs',
+// }));
 //  Telling Express JS to use handlebars as templating engine
-app.set('view engine', 'hbs');
-app.set('views','views');
+// app.set('view engine', 'hbs');
 
 // Pug Template Engine Section
 /*
@@ -41,14 +46,14 @@ app.set('views','views');
     folder name, change the second arguement passed in the app.set() as the name of the folder:
     e.g.: app.set('views','templates') if the templates stored inside 'templates' folder 
 */
-// app.set('views','views');
+app.set('views','views');
 
 // Initiate and use middlewares here
 app.use(bodyParser.urlencoded({extended: true}));
 
 /* 
     This middleware enables serving static files eg: main.css files to browser.
-    Basically, granting read access to the browser on the folder we passed in as the arguement below
+    Basically, granting read access to the browser on the folder name passed in as the arguement below
 */
 app.use(express.static(path.join(__dirname, 'public')))
 
