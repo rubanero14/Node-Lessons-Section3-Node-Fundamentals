@@ -17,7 +17,13 @@ const expressHandlebars = require('express-handlebars');
     registered package name as 2nd arguement as function to initialize the engine as below. The indentifier name given will
     be used as file extension such as shop.hbs or shop.{identifier-name} you had given here, its dynamic!
 */
-app.engine('hbs', expressHandlebars());
+/* This app.engine('hbs', ...) is applicable for all handlebars files extension except the main layout file */
+app.engine('hbs', expressHandlebars({
+    layoutsDir: 'views/layouts/',
+    defaultLayout: 'main-layout',
+    /* This code below is applicable for main layout handlebars file extension excluding all handlebars files */
+    extname: 'hbs',
+}));
 //  Telling Express JS to use handlebars as templating engine
 app.set('view engine', 'hbs');
 app.set('views','views');
