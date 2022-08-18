@@ -6,7 +6,6 @@ const rootDir = require("../util/path");
 const express = require("express");
 
 const adminData = require("./admin");
-const { title } = require("process");
 
 const router = express.Router();
 
